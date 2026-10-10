@@ -1,0 +1,622 @@
+\documentclass[12pt,a4paper]{article}
+
+% ============================================================
+% PACKAGES
+% ============================================================
+\usepackage[
+    a4paper,
+    top=1.55cm,
+    bottom=1.35cm,
+    left=1.75cm,
+    right=1.75cm
+]{geometry}
+
+\usepackage[T1]{fontenc}
+\usepackage{newtxtext}
+\usepackage{graphicx}
+\usepackage{xcolor}
+\usepackage{array}
+\usepackage{tabularx}
+\usepackage{fancyhdr}
+\usepackage{tikz}
+\usepackage{eso-pic}
+\usepackage{ragged2e}
+
+% ============================================================
+% COLORS
+% ============================================================
+\definecolor{GEUBlue}{RGB}{43,91,145}
+\definecolor{GEUBannerBlue}{RGB}{0,102,148}
+\definecolor{GEUYellow}{RGB}{255,201,38}
+\definecolor{InstructionGrey}{RGB}{125,125,125}
+
+% ============================================================
+% GENERAL SETTINGS
+% ============================================================
+\setlength{\parindent}{0pt}
+\setlength{\parskip}{0pt}
+\renewcommand{\arraystretch}{1}
+
+% ============================================================
+% HEADER / FOOTER
+% ============================================================
+\pagestyle{fancy}
+\fancyhf{}
+
+\fancyhead[L]{%
+    \fontsize{10.5}{12}\selectfont
+    TEAM ID: DSCPP-III-2026-T149
+}
+
+\fancyhead[R]{%
+    \fontsize{10.5}{12}\selectfont
+    PHASE-II PROJECT PROGRESS
+}
+
+\fancyfoot[R]{%
+    \fontsize{10}{12}\selectfont
+    Page \thepage
+}
+
+\renewcommand{\headrulewidth}{0pt}
+\renewcommand{\footrulewidth}{0pt}
+
+\setlength{\headheight}{20pt}
+\setlength{\headsep}{0.65cm}
+\setlength{\footskip}{0.65cm}
+
+% ============================================================
+% BOTTOM YELLOW LINE
+% ============================================================
+\AddToShipoutPictureBG{%
+\begin{tikzpicture}[remember picture,overlay]
+    \fill[GEUYellow]
+    (current page.south west)
+    rectangle
+    ([yshift=0.14cm]current page.south east);
+\end{tikzpicture}
+}
+
+% ============================================================
+% CUSTOM COMMANDS
+% ============================================================
+\newcommand{\sectiontitle}[1]{%
+    {\color{GEUBlue}
+    \fontsize{18}{22}\selectfont #1}
+}
+
+\newcommand{\instruction}[1]{%
+    {\color{InstructionGrey}
+    \fontsize{10.5}{13}\selectfont #1}
+}
+
+\newcommand{\answerbox}[2]{%
+    \begin{tabularx}{\textwidth}{
+        |>{\raggedright\arraybackslash}X|}
+        \hline
+        \parbox[t][#1][t]{\dimexpr\linewidth-12pt\relax}{
+            \vspace{5pt}
+            \fontsize{11}{13}\selectfont #2
+        }\\
+        \hline
+    \end{tabularx}
+}
+
+% ============================================================
+% DOCUMENT
+% ============================================================
+\begin{document}
+
+% ============================================================
+% PAGE 1
+% ============================================================
+
+\vspace*{0.10cm}
+
+% Upload Graphic Era logo as graphicera_logo.png
+\includegraphics[width=8.0cm]{geulogo.png}
+
+\vspace{0.70cm}
+
+\noindent
+\colorbox{GEUBannerBlue}{%
+\parbox{\dimexpr\textwidth-2\fboxsep\relax}{
+    \vspace{0.17cm}
+    {\color{GEUYellow}
+    \fontsize{16.5}{20}\selectfont
+    \bfseries
+    PROJECT AND TEAM INFORMATION}
+    \vspace{0.17cm}
+}}
+
+\vspace{0.80cm}
+
+% PROJECT TITLE
+\sectiontitle{Project Title}
+
+
+\vspace{0.40cm}
+
+\answerbox{1.00cm}{BudgetBee - Smart Personal Finance and Budgeting System}
+
+\vspace{0.80cm}
+
+% STUDENT INFORMATION
+% \sectiontitle{Student/Team Information}
+
+% \vspace{0.40cm}
+
+% \begin{tabularx}{\textwidth}{
+% |>{\raggedright\arraybackslash}p{0.66\textwidth}
+% |>{\raggedright\arraybackslash}X|
+% }
+% \hline
+
+% \parbox[t][1.15cm][t]{\linewidth}{
+% \vspace{4pt}
+% \fontsize{10.5}{13}\selectfont
+% Team Name:\\[2pt]
+% Team \# (Mentor needs to assign)
+% }
+% &
+% \\
+% \hline
+
+% \parbox[t][3.65cm][t]{\linewidth}{
+% \vspace{5pt}
+% \fontsize{10.5}{13}\selectfont
+% Team member 1 (Team Lead)\\[3pt]
+% {\color{InstructionGrey}
+% (Last Name, name: student ID: email, picture):}
+% }
+% &
+% \\
+% \hline
+
+% \parbox[t][3.65cm][t]{\linewidth}{
+% \vspace{5pt}
+% \fontsize{10.5}{13}\selectfont
+% Team member 2\\[3pt]
+% {\color{InstructionGrey}
+% (Last Name, name: student ID: email, picture):}
+% }
+% &
+% \\
+% \hline
+
+% \end{tabularx}
+
+% \newpage
+\noindent
+\begin{tabularx}{\textwidth}{|>{\RaggedRight\arraybackslash}p{0.69\textwidth}|>{\RaggedRight\arraybackslash}X|}
+\hline
+\begin{minipage}[t]{\linewidth}
+\vspace{1.5mm}
+\textit{Team Name:}\\[-1mm]
+\textit{Team ID}
+\vspace{1.5mm}
+\end{minipage}
+&
+\begin{minipage}[t]{\linewidth}
+\vspace{1.5mm}
+\textbf{BudgetBee}
+\hspace{1.00cm}
+\textit{DSCPP-III-2026-T149}
+\vspace{1.5mm}
+\end{minipage}
+\\
+\hline
+\begin{minipage}[t][3.25cm][t]{\linewidth}
+\vspace{1.5mm}
+\textbf{Team member 1 (Team Lead)}\\[-1mm]
+\vspace{2.0cm}
+\end{minipage}
+&
+\begin{minipage}[t][3.25cm][t]{\linewidth}
+\vspace{1.5mm}
+\textit{Agarwal, Krishna -- 2510012139}\\
+\textit{krishnaagarwal7060@gmail.com}
+
+\vspace{2mm}
+\includegraphics[width=3.0cm,height=1.5cm,keepaspectratio]{member1.png}
+\end{minipage}
+\\
+\hline
+\begin{minipage}[t][3.25cm][t]{\linewidth}
+\vspace{1.5mm}
+\textbf{Team member 2}\\[-1mm]
+\vspace{2.0cm}
+\end{minipage}
+&
+\begin{minipage}[t][3.25cm][t]{\linewidth}
+\vspace{1.5mm}
+\textit{Tahiliani, Disha -- 2510010117}\\
+\textit{tahilianidisha.27@gmail.com}
+
+\vspace{2mm}
+\includegraphics[width=3.0cm,height=1.5cm,keepaspectratio]{member2.png}
+\end{minipage}
+\\
+\hline
+\begin{minipage}[t][3.25cm][t]{\linewidth}
+\vspace{1.5mm}
+\textbf{Team member 3}\\[-1mm]
+\vspace{2.0cm}
+\end{minipage}
+&
+\begin{minipage}[t][3.25cm][t]{\linewidth}
+\vspace{1.5mm}
+\textit{Mehandiratta, Divyanshu  2510380091}\\
+\textit{vanshu14052007@gmail.com}
+
+\vspace{2mm}
+\includegraphics[width=3.0cm,height=1.5cm,keepaspectratio]{member3.png}
+\end{minipage}
+\\
+\hline
+\begin{minipage}[t][3.25cm][t]{\linewidth}
+\vspace{1.5mm}
+\textbf{Team member 4}\\[-1mm]
+\vspace{2.0cm}
+\end{minipage}
+&
+\begin{minipage}[t][3.25cm][t]{\linewidth}
+\vspace{1.5mm}
+\textit{Rathi, Abhigyan -- 2510370276}\\
+\textit{abhigyan71250rathi@gmail.com}
+
+\vspace{2mm}
+ \includegraphics[width=3.0cm,height=1.5cm,keepaspectratio]{member4.png}
+\end{minipage}
+\\
+\hline
+\end{tabularx}
+
+\newpage
+% ============================================================
+% PAGE 2
+% ============================================================
+
+\vspace*{0.15cm}
+
+\noindent
+\colorbox{GEUBannerBlue}{%
+\parbox{\dimexpr\textwidth-2\fboxsep\relax}{
+    \vspace{0.18cm}
+    {\color{GEUYellow}
+    \fontsize{17}{21}\selectfont
+    \bfseries
+    PHASE-II PROJECT PROGRESS DESCRIPTION}
+    \vspace{0.18cm}
+}}
+
+\vspace{0.70cm}
+
+% PROJECT ABSTRACT
+\sectiontitle{Project Abstract}
+
+\vspace{0.12cm}
+
+\answerbox{4.00cm}{BudgetBee is a website for keeping everyday money matters in one place.It helps users record expenses, check monthly
+budgets, keep track of bills, and follow savings goals.The dashboard shows income and spending totals, along with an estimate of how much money is left to spend.Users can add and manage transactions, group expenses by category, and see how close they are to a budget limit. Separate sections cover bills and EMIs, savings goals, and a What-if tool for estimating how a planned expense may affect the budget.The site also provides spending indicators and lets users export transaction records as a CSV file.The current version is a frontend prototype made with HTML, CSS, and JavaScript.It stores data in the browser, rather than in an online account.}
+
+\vspace{1.70cm}
+
+% UPDATED PROJECT APPROACH
+\sectiontitle{Updated Project Approach and Architecture}
+
+\vspace{0.25cm}
+
+\answerbox{4.50cm}{We have built the current version as a single-page website, with navigation tabs for its main sections. HTML provides the
+structure, CSS controls the layout and visual design, and JavaScript handles interactive features such as transaction
+updates, budget calculations, bill status, savings progress, and CSV export. The browser's localStorage API keeps data
+available when the page is reopened in the same browser. The dashboard uses transaction records to calculate spending
+totals and budget usage. The supplied version does not have a separate server, remote database, or frontend-to-backend
+communication. Our next step is to test the existing features with sample data, compare financial calculations with manual
+results, and check the layout on different screen sizes. Backend and database support could be considered later if they are
+required by the project scope.}
+
+\vspace{1.70cm}
+
+% TASKS COMPLETED
+\sectiontitle{Tasks Completed}
+
+\vspace{0.20cm}
+
+\begin{tabularx}{\textwidth}{
+|>{\raggedright\arraybackslash}X
+|>{\raggedright\arraybackslash}X|
+}
+\hline
+\textbf{Task Completed} &
+\textbf{Team Member}\\
+\hline
+
+\parbox[t][3.50cm][t]{\linewidth}{
+\begin{compresslist}
+    \item Frontend structure, layout, and navigation
+    \item Dashboard and financial calculations
+    \item Transaction management and budget tracking
+    \item Bills,EMIs,savings goals, and spending simulator
+    \item Integration and documentation
+\end{compresslist} 
+}
+&
+\parbox[t][3.25cm][t]{\linewidth}{
+\begin{compresslist}
+    \item Divyanshu Mehandiratta (confirm assignment)
+    \item Disha Tahiliani (confirm assignment)
+    \item Krishna Agarwal (confirm assignment)
+    \item Abhigyan Rathi (confirm assignment)
+    \item Team members jointly (confirm assignment)
+\end{compresslist} 
+}
+\\
+\hline
+\end{tabularx}
+
+
+\newpage
+
+% ============================================================
+% PAGE 3
+% ============================================================
+
+\vspace*{0.20cm}
+
+
+% CHALLENGES
+\sectiontitle{Challenges/Roadblocks}
+
+\vspace{0.18cm}
+
+\answerbox{9.35cm}{One of the main challenges in developing BudgetBee has been maintaining consistency between the different sections of the website. When a transaction is added or deleted, the dashboard, category-wise spending information, and budget alerts need to reflect the updated values. This requires careful handling of financial calculations and application data.
+
+Another challenge is managing financial records using browser storage. The current application uses localStorage, which is suitable for a frontend prototype but does not provide centralised storage or separate accounts for multiple users. Data availability is also tied to the browser where it was saved.
+
+Making financial information easy to understand has also been an important consideration. Budget indicators, spending summaries, progress bars, and alerts have been included to help users interpret their financial position without needing advanced financial knowledge.
+
+The application contains several interactive features, so these need to be tested with different inputs to identify possible calculation errors or unexpected behaviour. Particular attention is required when checking transaction dates, budget limits, bill payments, savings targets, and CSV export.
+
+To address these challenges, we plan to test each feature separately, compare calculated results against manually verified values, and correct any issues found during testing. We will also check the interface on different screen sizes and improve input validation wherever necessary.
+
+If the final project scope requires additional functionality, backend integration and database support can be considered as future improvements. These changes would help extend the current prototype beyond its existing browser-based implementation.}
+
+\vspace{1.70cm}
+
+% TASKS PENDING
+\sectiontitle{Tasks Pending}
+
+
+\vspace{0.18cm}
+
+\begin{tabularx}{\textwidth}{
+|>{\raggedright\arraybackslash}X
+|>{\raggedright\arraybackslash}X|
+}
+\hline
+
+\textbf{Task Pending} &
+\textbf{Team Member (to complete the task)}
+\\
+\hline
+
+\parbox[t][4.15cm][t]{\linewidth}{
+\begin{compresslist}
+    \item Functional testing of the website 
+    \item Financial calculations and input validation 
+    \item Responsive design and browser compatibility 
+    \item Testing records and project documentation 
+    \item Final report and project presentation 
+\end{compresslist} 
+}
+&
+\parbox[t][4.15cm][t]{\linewidth}{
+\begin{compresslist}
+    \item Divyanshu Mehandiratta
+    \item Disha Tahiliani
+    \item Abhigyan Rathi
+    \item Krishna Agarwal
+    \item Team members jointly
+\end{compresslist} 
+}
+\\
+\hline
+
+\end{tabularx}
+
+\newpage
+
+% ============================================================
+% PAGE 4
+% ============================================================
+
+\vspace*{0.30cm}
+
+% PROJECT OUTCOME
+\sectiontitle{Project Outcome/Deliverables}
+
+\vspace{0.35cm}
+
+\answerbox{3.45cm}{The main outcome of this phase is a frontend prototype that brings common budgeting tasks together. The current source
+includes a dashboard, transaction management, category budgets, bills and EMI tracking, savings goals, and a What-if
+spending tool. It also includes spending insights, budget indicators, dark mode, CSV export, and browser-based data
+storage. The project demonstrates how HTML, CSS, and JavaScript can be used to build an interactive finance tool. The
+key deliverables are the BudgetBee source file, implemented frontend features, this progress report, testing records, and
+presentation materials. Testing records and presentation materials still need to be completed or finalised.}
+
+\vspace{1.75cm}
+
+% PROGRESS OVERVIEW
+\sectiontitle{Progress Overview}
+
+\vspace{0.25cm}
+
+\answerbox{3.95cm}{The main frontend features are present in the current HTML file, including the dashboard, transaction tools, budget
+tracking, bills and EMIs, savings goals, and the What-if simulator. CSV export and browser storage are also included. The
+next stage is to check that these features work as expected. Financial calculations, data persistence, browser
+compatibility, and responsive layouts still need systematic testing, with results recorded. We do not have a verified
+schedule or task tracker in the supplied material, so we cannot reliably state whether the project is ahead of or behind
+schedule. The immediate priorities are testing, fixing any issues found, and finishing the report and presentation. A
+backend and remote database remain future options unless required by the approved scope.}
+
+\vspace{1.75cm}
+
+% CODEBASE
+\sectiontitle{Codebase Information}
+
+\vspace{0.20cm}
+
+\begin{tabularx}{\textwidth}{
+|>{\raggedright\arraybackslash}X
+|>{\raggedright\arraybackslash}X|
+}
+\hline
+
+\textbf{Item} &
+\textbf{Details}
+\\
+\hline
+
+\parbox[t][6.15cm][t]{\linewidth}{
+\begin{compresslist}
+    \item Main source file
+    \item Languages
+    \item Structure
+    \item Data Storage 
+    \item Repository link
+    \vspace{0.50cm}
+    \item Branch
+    \item Important commits
+\end{compresslist} 
+}
+&
+\parbox[t][6.15cm][t]{\linewidth}{
+\begin{compresslist}
+    \item BudgetBee.html
+    \item HTML, CSS, JavaScript
+    \item Single-page frontend in one HTML file
+    \item Browser localStorage
+    \item https://github.com/KrishnaAgarwal7060/BudgetBee-Small-savings-bigger-goals
+    \item main
+    \item https://github.com/KrishnaAgarwal7060/BudgetBee-Small-savings-bigger-goals/commits/main
+\end{compresslist} 
+}
+\\
+\hline
+
+\end{tabularx}
+
+\vspace{0.65cm}
+
+\newpage
+
+% ============================================================
+% PAGE 5
+% ============================================================
+
+\vspace*{0.20cm}
+
+% TESTING
+\sectiontitle{Testing and Validation Status}
+
+\vspace{0.30cm}
+
+\begin{tabularx}{\textwidth}{
+|>{\raggedright\arraybackslash}p{0.34\textwidth}
+|>{\raggedright\arraybackslash}p{0.31\textwidth}
+|>{\raggedright\arraybackslash}X|
+}
+\hline
+
+\textbf{Test Type} &
+\textbf{Status (Pass/Fail)} &
+\textbf{Notes}
+\\
+\hline
+
+\parbox[t][14.45cm][t]{\linewidth}{
+\begin{compresslist}
+    \item Source-code review
+    \vspace{1.00cm}
+    \item Dashboard calculations
+    \vspace{1.00cm}
+    \item Transaction management
+    \vspace{1.00cm}
+    \item Budget tracking
+    \vspace{0.60cm}
+    \item Bills and EMI management
+    \vspace{0.50cm}
+    \item Savings goals
+    \vspace{0.50cm}
+    \item What-if simulator
+    \vspace{0.75cm}
+    \item CSV export
+    \vspace{1.00cm}
+    \item Data persistence
+    \vspace{1.00cm}
+    \item Responsive layout
+\end{compresslist} 
+}
+&
+\parbox[t][11.20cm][t]{\linewidth}{
+\begin{compresslist}
+    \item Completed
+    \vspace{1.00cm}
+    \item Not yet tested
+    \vspace{1.00cm}
+    \item Not yet tested
+    \vspace{1.00cm}
+    \item Not yet tested
+    \vspace{0.60cm}
+    \item Not yet tested
+    \vspace{0.50cm}
+    \item Not yet tested
+    \vspace{0.50cm}
+    \item Not yet tested
+    \vspace{0.75cm}
+    \item Not yet tested
+    \vspace{1.00cm}
+    \item Not yet tested
+    \vspace{1.00cm}
+    \item Not yet tested
+\end{compresslist} 
+}
+&
+\parbox[t][11.20cm][t]{\linewidth}{
+\begin{compresslist}
+    \item Main HTML, CSS, and JavaScript functionality identified.
+    \item Verify income, expenses, budget totals, and remaining spending amount.
+    \item Check adding, deleting, searching, filtering, and sorting.
+    \item Verify spending percentages and budget alerts.
+    \item Check adding bills and recording payment status.
+    \item Verify goal creation and savings progress.
+    \item Check simulated expenses and resulting budget values.
+    \item Confirm that the downloaded file contains the expected transaction data.
+    \item Check whether saved data remains after reopening the website.
+    \item Check the interface at different screen sizes.
+\end{compresslist} 
+}
+\\
+\hline
+
+\end{tabularx}
+
+\vspace{1.65cm}
+
+% DELIVERABLES PROGRESS
+\sectiontitle{Deliverables Progress}
+
+\vspace{0.25cm}
+
+\answerbox{6.50cm}{The main frontend deliverables of BudgetBee have been implemented in the current codebase. These include the website interface, financial dashboard, transaction management, category-wise budgets, bills and EMI management, savings goals, and What-if spending simulator.
+
+Additional implemented features include spending insights, budget alerts, browser-based data storage, dark-mode switching, and CSV export functionality. These features form the current working prototype and demonstrate the main objectives of the project.
+
+The remaining work focuses on functional testing, verification of financial calculations, data persistence checks, responsive design validation, and preparation of testing records. The project report, supporting screenshots, and final presentation also need to be completed or finalised.
+
+Backend integration, user authentication, and remote database storage have not been implemented in the supplied HTML file. They remain possible future improvements if required by the final project scope.
+
+The current priority is to verify the existing functionality, resolve any issues identified during testing, and prepare the final project deliverables for submission.}
+
+\end{document}
