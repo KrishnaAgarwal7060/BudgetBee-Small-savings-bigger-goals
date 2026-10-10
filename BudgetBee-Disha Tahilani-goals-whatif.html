@@ -1,0 +1,156 @@
+<!DOCTYPE html>
+<html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>BudgetBee - Person 4 (Goals & What-if)</title>
+<link href="https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:wght@600;800&family=DM+Sans:wght@400;500;700&display=swap" rel="stylesheet">
+<style>
+:root{--bg:#fff0f0;--card:rgba(255,255,255,.82);--solid:#fff;--ink:#2b0a0a;--mute:#7d4a4a;--pink:#dc2626;--pink2:#ff6b6b;--soft:#fee2e2;--line:#fbcaca;--warn:#b45309;--bad:#7f1d1d;--on:#fff;--honey:#f9a825;--honey2:#ffd166;--sh:0 10px 30px -12px rgba(220,38,38,.35);
+box-sizing:border-box;padding-top:env(safe-area-inset-top,0px);padding-bottom:env(safe-area-inset-bottom,0px)}
+@media (prefers-color-scheme:dark){:root:not([data-theme="light"]){--bg:#1a0808;--card:rgba(48,17,17,.85);--solid:#2c1111;--ink:#ffe8e6;--mute:#d9a3a0;--pink:#ff5a5a;--pink2:#ff8f8f;--soft:#431a1a;--line:#5c2626;--warn:#fbbf24;--bad:#ff8a8a;--on:#2a0808;--honey:#ffc83d;--honey2:#ffe08a;--sh:0 10px 30px -12px #000}}
+:root[data-theme="dark"]{--bg:#1a0808;--card:rgba(48,17,17,.85);--solid:#2c1111;--ink:#ffe8e6;--mute:#d9a3a0;--pink:#ff5a5a;--pink2:#ff8f8f;--soft:#431a1a;--line:#5c2626;--warn:#fbbf24;--bad:#ff8a8a;--on:#2a0808;--honey:#ffc83d;--honey2:#ffe08a;--sh:0 10px 30px -12px #000}
+html{scroll-padding-top:env(safe-area-inset-top,0px);scroll-behavior:smooth}
+*{box-sizing:border-box}
+body{margin:0;color:var(--ink);font:400 16px/1.5 'DM Sans',system-ui,sans-serif;background:
+ url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='56' height='98'%3E%3Cpath d='M28 2l26 15v30L28 62 2 47V17zM28 64l26 15v19M28 64L2 79v19' fill='none' stroke='%23dc2626' stroke-opacity='.09' stroke-width='1.5'/%3E%3C/svg%3E"),
+ radial-gradient(900px 500px at 90% -10%,rgba(255,107,107,.35),transparent),radial-gradient(700px 500px at -10% 10%,rgba(220,38,38,.15),transparent),var(--bg);background-attachment:fixed}
+h1,h2,h3{font-family:'Bricolage Grotesque','DM Sans',sans-serif;margin:0;line-height:1.1}
+.wrap{max-width:1000px;margin:0 auto;padding:16px 16px 90px}
+header{display:flex;align-items:center;justify-content:space-between;gap:12px;padding:8px 0 14px}
+.logo{display:flex;align-items:center;gap:10px;font:800 28px 'Bricolage Grotesque',sans-serif;color:var(--pink)}
+.logo .b{font-size:34px;display:inline-block;animation:fly 3s ease-in-out infinite}
+.logo small{display:block;font:500 13px 'DM Sans',sans-serif;color:var(--mute)}
+@keyframes fly{50%{transform:translate(4px,-6px) rotate(8deg)}}
+button,input,select{font:inherit;color:inherit}
+.btn{background:linear-gradient(135deg,var(--pink),var(--pink2));color:#fff;border:0;border-radius:999px;padding:10px 20px;font-weight:700;cursor:pointer;box-shadow:var(--sh);transition:transform .15s}
+.btn:hover{transform:translateY(-2px) scale(1.03)}.btn:active{transform:scale(.97)}
+.btn.ghost{background:var(--soft);color:var(--pink);box-shadow:none}
+.btn.sm{padding:6px 14px;font-size:14px}
+button:focus-visible,input:focus-visible,select:focus-visible{outline:3px solid var(--pink2);outline-offset:2px}
+nav{display:flex;gap:6px;overflow-x:auto;padding:6px;margin-bottom:14px;background:var(--card);backdrop-filter:blur(10px);border:1.5px solid var(--line);border-radius:999px;box-shadow:var(--sh);position:sticky;top:calc(6px + env(safe-area-inset-top,0px));z-index:5}
+nav button{white-space:nowrap;border:0;background:transparent;border-radius:999px;padding:9px 16px;cursor:pointer;font-weight:600;color:var(--mute);transition:.2s}
+nav button:hover{background:var(--soft)}
+nav button[aria-selected=true]{background:linear-gradient(135deg,var(--pink),var(--pink2));color:#fff}
+main>*{animation:rise .45s both}main>*:nth-child(2){animation-delay:.06s}main>*:nth-child(3){animation-delay:.12s}
+@keyframes rise{from{opacity:0;transform:translateY(14px)}}
+.card{background:var(--card);backdrop-filter:blur(10px);border:1.5px solid var(--line);border-radius:24px;padding:20px;margin-bottom:14px;box-shadow:var(--sh);transition:transform .2s}
+.card:hover{transform:translateY(-3px)}
+.grid{display:grid;gap:14px;grid-template-columns:repeat(auto-fit,minmax(260px,1fr))}
+.hero{position:relative;overflow:hidden;display:flex;flex-wrap:wrap;align-items:center;gap:24px;background:linear-gradient(135deg,#b91c1c,#ef4444 50%,#ff9a62);color:#fff;border-radius:32px;padding:30px;margin-bottom:14px;box-shadow:0 24px 50px -20px rgba(220,38,38,.7)}
+.hero::before{content:"";position:absolute;inset:0;background:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='56' height='98'%3E%3Cpath d='M28 2l26 15v30L28 62 2 47V17z' fill='none' stroke='white' stroke-opacity='.18' stroke-width='1.5'/%3E%3C/svg%3E")}
+.hero>*{position:relative}
+.hero::after{content:"";position:absolute;left:0;right:0;bottom:0;height:12px;background:repeating-linear-gradient(-45deg,var(--honey) 0 14px,#2b0a0a 14px 28px)}
+body::before{content:"";position:fixed;top:0;left:0;right:0;height:6px;background:repeating-linear-gradient(-45deg,var(--honey) 0 12px,#2b0a0a 12px 24px);z-index:30}
+.hero h2{font-size:clamp(40px,10vw,72px);color:#fff;letter-spacing:-1px}
+.hero p{margin:6px 0 0;opacity:.95}
+.hero .bg{position:absolute;right:18px;top:6px;font-size:84px;opacity:.9;animation:fly 4s ease-in-out infinite}
+.ring{width:160px;height:160px;flex:none;filter:drop-shadow(0 8px 14px rgba(0,0,0,.2))}
+.ring text{fill:#fff;font:800 28px 'Bricolage Grotesque',sans-serif}
+.stat{font:800 30px 'Bricolage Grotesque',sans-serif}
+.ico{display:inline-grid;place-items:center;width:40px;height:40px;clip-path:polygon(50% 0,100% 25%,100% 75%,50% 100%,0 75%,0 25%);background:linear-gradient(135deg,var(--honey2),var(--honey));margin-right:8px;font-size:20px}
+.mute{color:var(--mute);font-size:14px}
+.bar{height:12px;border-radius:99px;background:var(--soft);overflow:hidden;margin:6px 0}
+.bar i{display:block;height:100%;background:linear-gradient(90deg,var(--pink),var(--honey));border-radius:99px;transition:width .6s cubic-bezier(.2,.8,.2,1)}
+.bar.warn i{background:var(--warn)}.bar.over i{background:var(--bad)}
+.tag{display:inline-block;border-radius:99px;padding:2px 11px;font-size:13px;font-weight:700;background:var(--soft);color:var(--pink)}
+.tag.warn{color:var(--warn)}.tag.over{color:var(--bad)}
+.row{display:flex;align-items:center;justify-content:space-between;gap:10px;padding:11px 0;border-bottom:1px dashed var(--line)}
+.row:last-child{border:0}.row>div:first-child{min-width:0}
+form,.ctl{display:flex;flex-wrap:wrap;gap:8px;align-items:end}
+label{display:flex;flex-direction:column;font-size:13px;color:var(--mute);gap:3px;font-weight:500}
+input,select{background:var(--solid);border:1.5px solid var(--line);border-radius:14px;padding:9px 12px;min-width:0}
+input[type=range]{padding:0;accent-color:var(--pink);width:100%}
+.in{color:var(--pink)}
+.bee{background:var(--soft);border-radius:16px;padding:11px 15px;margin:8px 0;border-left:4px solid var(--honey)}
+.donut{display:flex;flex-wrap:wrap;gap:16px;align-items:center}
+.donut svg{width:150px;height:150px;flex:none}
+.lg{flex:1;min-width:130px;font-size:14px}.lg div{display:flex;align-items:center;gap:7px;padding:2px 0}.lg i{width:11px;height:11px;border-radius:4px;flex:none}
+#toast{position:fixed;left:50%;bottom:calc(20px + env(safe-area-inset-bottom,0px));transform:translate(-50%,30px);background:var(--ink);color:var(--bg);padding:12px 22px;border-radius:99px;opacity:0;pointer-events:none;transition:.3s;max-width:92vw;z-index:9;box-shadow:var(--sh)}
+#toast.show{opacity:1;transform:translate(-50%,0)}
+dialog{border:0;border-radius:24px;background:var(--solid);color:var(--ink);width:min(560px,92vw)}
+dialog::backdrop{background:rgba(43,10,10,.5);backdrop-filter:blur(4px)}
+textarea{width:100%;height:200px;background:var(--bg);color:var(--ink);border:1.5px solid var(--line);border-radius:14px;padding:10px;font:13px monospace}
+.cf{position:fixed;top:-30px;font-size:26px;pointer-events:none;z-index:20;animation:fall 2.2s ease-in forwards}
+@keyframes fall{to{transform:translate(var(--x),105vh) rotate(540deg);opacity:.8}}
+@media (prefers-reduced-motion:reduce){*{animation:none!important;transition:none!important}}
+</style></head><body><div id="root"></div>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/react/18.3.1/umd/react.production.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/react-dom/18.3.1/umd/react-dom.production.min.js"></script>
+<script>/* PERSON 1: shared constants + small UI helpers (everyone imports these) */
+const {useState,useEffect}=React,h=React.createElement;
+
+const CATS={Housing:'🏠',Food:'🍜',Utilities:'💡',Transport:'🚌',Loans:'🏦',Subscriptions:'📺',Health:'💊',Education:'📚',Personal:'🛍️',Savings:'🐷'};
+
+const pad=n=>String(n).padStart(2,'0'),fmt=n=>'₹'+Math.round(n).toLocaleString('en-IN');
+
+const NOW=new Date(),Y=NOW.getFullYear(),M=NOW.getMonth()+1,YM=Y+'-'+pad(M),DIM=new Date(Y,M,0).getDate(),TODAY=NOW.getDate(),LEFT=DIM-TODAY+1,D=d=>YM+'-'+pad(Math.min(d,DIM));
+
+const cls=p=>p>=100?'over':p>=80?'warn':'',state=p=>p>=100?'Over budget':p>=80?'Near limit':'On track';
+
+const Bar=({p})=>h('div',{className:'bar '+cls(p)},h('i',{style:{width:Math.min(100,p)+'%'}}));
+
+const Opts=()=>Object.keys(CATS).map(c=>h('option',{key:c},c));
+
+const Ico=({c})=>h('span',{className:'ico'},CATS[c]);
+
+const Fld=(l,el)=>h('label',null,l,el);
+
+/* PERSON 1: shared state shape (seed), per-category totals (hash map), derive() */
+function totalsByCat(tx,type){const m=new Map();for(const x of tx)if(x.t===type)m.set(x.cat,(m.get(x.cat)||0)+x.amt);return m}
+
+const seed=()=>({nid:100,tx:[[1,'in',60000,'Savings','Salary',1],[2,'out',15000,'Housing','Rent',1],[3,'out',2400,'Food','Groceries',2],[4,'out',650,'Food','Lunch with friends',3],[5,'out',540,'Food','Food delivery',3],[6,'out',5200,'Food','Party dinner',4],[7,'out',320,'Transport','Cab',2],[8,'out',280,'Transport','Metro card',3],[9,'out',1100,'Health','Medicines',4],[10,'out',1800,'Personal','Shopping',4]].map(([id,t,amt,cat,note,d])=>({id,t,amt,cat,note,date:D(d)})),
+ bud:{Housing:15500,Food:7000,Utilities:3000,Transport:2000,Loans:6000,Subscriptions:1200,Health:2000,Education:2500,Personal:3000,Savings:8000},
+ bills:[{id:1,name:'Education loan EMI',type:'EMI',cat:'Loans',amt:5400,day:10,paid:false},{id:2,name:'Electricity bill',type:'Bill',cat:'Utilities',amt:1450,day:15,paid:false},{id:3,name:'Netflix',type:'Subscription',cat:'Subscriptions',amt:649,day:7,paid:false},{id:4,name:'Wi-Fi',type:'Bill',cat:'Utilities',amt:799,day:20,paid:false}],
+ goals:[{id:1,name:'New laptop',target:60000,saved:18000},{id:2,name:'Goa trip',target:25000,saved:9500}]});
+
+function derive(S){const mt=S.tx.filter(x=>x.date.startsWith(YM)),out=totalsByCat(mt,'out'),sp=c=>out.get(c)||0,
+ spent=[...out.values()].reduce((a,b)=>a+b,0),inc=[...totalsByCat(mt,'in').values()].reduce((a,b)=>a+b,0),
+ tb=Object.values(S.bud).reduce((a,b)=>a+(+b||0),0),unpaid=S.bills.filter(b=>!b.paid).reduce((a,b)=>a+b.amt,0);
+ return{sp,spent,inc,tb,unpaid,safe:tb-spent-unpaid,out}}
+
+/* PERSON 2: merge sort + Trie */
+function msort(a,f){if(a.length<2)return a;const m=a.length>>1,l=msort(a.slice(0,m),f),r=msort(a.slice(m),f),o=[];let i=0,j=0;
+ while(i<l.length&&j<r.length)o.push(f(l[i],r[j])<=0?l[i++]:r[j++]);while(i<l.length)o.push(l[i++]);while(j<r.length)o.push(r[j++]);return o}
+
+class Trie{constructor(){this.r={c:{},ids:new Set()}}
+ insert(w,id){let n=this.r;for(const ch of w){n=n.c[ch]||(n.c[ch]={c:{},ids:new Set()});n.ids.add(id)}}
+ find(p){let n=this.r;for(const ch of p){n=n.c[ch];if(!n)return new Set()}return n.ids}}
+
+/* PERSON 4: Honey pots tab */
+function Goals({S,set}){const [amt,setAmt]=useState({}),[g,setG]=useState({name:'',target:''});
+ const addS=x=>{const v=+amt[x.id];if(!v)return;set(s=>({...s,goals:s.goals.map(y=>y.id===x.id?{...y,saved:Math.min(y.target,y.saved+v)}:y)}));setAmt({...amt,[x.id]:''})};
+ return h(React.Fragment,null,h('div',{className:'grid'},S.goals.map(x=>{const p=x.saved/x.target*100;return h('div',{className:'card',key:x.id},h('div',{className:'row',style:{border:0,padding:0}},h('b',{style:{fontSize:18}},'🍯 '+x.name),h('span',{className:'tag'},Math.round(p)+'%')),h('div',{className:'mute'},fmt(x.saved)+' of '+fmt(x.target)),h(Bar,{p:Math.min(p,99.9)}),
+  h('div',{className:'ctl',style:{marginTop:8}},h('input',{type:'number',min:1,placeholder:'Add ₹',value:amt[x.id]||'',onChange:e=>setAmt({...amt,[x.id]:e.target.value}),style:{width:100}}),h('button',{className:'btn sm',onClick:()=>addS(x)},'Add savings'),h('button',{className:'btn ghost sm',onClick:()=>set(s=>({...s,goals:s.goals.filter(y=>y.id!==x.id)}))},'✕')))})),
+ h('div',{className:'card'},h('h3',null,'New honey pot'),h('form',{style:{marginTop:12},onSubmit:e=>{e.preventDefault();set(s=>({...s,nid:s.nid+1,goals:[...s.goals,{id:s.nid+1,name:g.name,target:+g.target,saved:0}]}));setG({name:'',target:''})}},
+  Fld('Goal',h('input',{required:true,value:g.name,onChange:e=>setG({...g,name:e.target.value})})),Fld('Target (₹)',h('input',{type:'number',min:1,required:true,value:g.target,onChange:e=>setG({...g,target:e.target.value}),style:{width:120}})),h('button',{className:'btn'},'Create goal'))))}
+
+/* PERSON 4: What-if tab */
+function Sim({S}){const [c,setC]=useState('Personal'),[a,setA]=useState(3000),d=derive(S),b=+S.bud[c]||0,after=d.sp(c)+a,p=b?after/b*100:0,sf=d.safe-a;
+ return h('div',{className:'card'},h('h3',null,'What if I spend…'),h('p',{className:'mute'},'Nothing is saved.'),
+  h('div',{className:'ctl',style:{margin:'10px 0'}},Fld('Category',h('select',{value:c,onChange:e=>setC(e.target.value)},Opts()))),
+  Fld('Amount: ',h('b',{style:{font:"800 28px 'Bricolage Grotesque'",color:'var(--pink)'}},fmt(a)),h('input',{type:'range',min:0,max:30000,step:100,value:a,onChange:e=>setA(+e.target.value)})),
+  h('div',{style:{marginTop:12}},h('div',{className:'bee'},`${CATS[c]} ${c}: ${b?Math.round(p)+'% of budget used after this ('+fmt(Math.max(0,b-after))+' left)':'no budget set'}.`),b>0&&h(Bar,{p}),
+   h('div',{className:'bee'},`Safe to spend would become ${sf<0?'−':''}${fmt(Math.abs(sf))}, about ${fmt(Math.max(0,sf)/LEFT)} a day.`),
+   h('span',{className:'tag '+(sf<0||p>=100?'over':p>=80?'warn':'')},sf<0?'This would push you past your plan':p>=100?'Category goes over budget':p>=80?'Possible, but close to the limit':'Safe to go ahead ✓')))}
+
+/* PERSON 4: CSV export (plain JS). Hook-up: Person 1 adds a header button calling downloadCSV(S.tx) */
+function csvText(tx){
+  const f=v=>{v=String(v);if(/^[=+\-@]/.test(v))v="'"+v;return '"'+v.replace(/"/g,'""')+'"'};
+  const rows=[['Date','Type','Category','Note','Amount (INR)']].concat(
+    msort([...tx],(a,b)=>a.date.localeCompare(b.date)).map(x=>[x.date,x.t==='in'?'Income':'Expense',x.cat,x.note,x.amt]));
+  return rows.map(r=>r.map(f).join(',')).join('\r\n');
+}
+function downloadCSV(tx){
+  const a=document.createElement('a');
+  a.href=URL.createObjectURL(new Blob(['\ufeff'+csvText(tx)],{type:'text/csv'}));
+  a.download='budgetbee-'+YM+'.csv';document.body.appendChild(a);a.click();a.remove();
+}
+
+
+/* Person 4 preview shell */
+function App(){const [S,set]=useState(()=>{try{const v=JSON.parse(localStorage.getItem('bb-p4')||'null');if(v)return v}catch(e){}return seed()}),[tab,setTab]=useState('goals');
+ useEffect(()=>{try{localStorage.setItem('bb-p4',JSON.stringify(S))}catch(e){}},[S]);
+ const T={'goals':Goals,'sim':Sim}[tab];
+ return h('div',{className:'wrap'},h('header',null,h('div',{className:'logo'},h('span',{className:'b'},'🐝'),h('div',null,'BudgetBee',h('small',null,'Person 4 · Goals & What-if'))),h('button',{className:'btn sm',onClick:()=>downloadCSV(S.tx)},'⬇ Export CSV')),
+  h('nav',{role:'tablist'},[['goals','🍯 Honey pots'],['sim','🔮 What-if']].map(([k,l])=>h('button',{key:k,role:'tab','aria-selected':k===tab,onClick:()=>setTab(k)},l))),
+  h('main',null,h(T,{key:tab,S,set})))}
+ReactDOM.createRoot(document.getElementById('root')).render(h(App));
+</script></body></html>
