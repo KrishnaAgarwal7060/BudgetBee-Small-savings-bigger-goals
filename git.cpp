@@ -603,6 +603,27 @@ public:
         for (const auto& b : bills) if (!b.paid) unp += b.amount;
         return unp;
     }
+    void showUnpaidBills() const {
+    std::cout << "\n--- Unpaid Bills ---\n";
+
+    bool found = false;
+
+    for (const auto& bill : bills) {
+        if (!bill.paid) {
+            found = true;
+
+            std::cout << "Bill: " << bill.name
+                      << " | Category: " << bill.category
+                      << " | Amount: Rs. " << bill.amount
+                      << " | Due Day: " << bill.dueDay
+                      << "\n";
+        }
+    }
+
+    if (!found) {
+        std::cout << "No unpaid bills found.\n";
+    }
+}
 
     double getSafeToSpend() const {
         return getTotalBudget() - getTotalExpense() - getUnpaidBills();
@@ -754,6 +775,7 @@ public:
             std::cout << "  9. Start Local REST HTTP API Server (Port 8080)\n";
             std::cout << "  10. Category-wise Expense Summary\n";
             std::cout << "  11. Monthly Expense Summary\n";
+            std::cout << "  12. View Unpaid Bills\n";
             std::cout << "  0. Exit\n";
             std::cout << "Enter choice: ";
 
@@ -852,6 +874,9 @@ public:
 }
 else if (choice == 11) {
     showMonthlyExpenses();
+}
+else if (choice == 12) {
+    showUnpaidBills();
 }
         }
     }
