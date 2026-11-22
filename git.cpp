@@ -648,6 +648,29 @@ void showGoalProgress() const {
         std::cout << "No savings goals found.\n";
     }
 }
+void showHighestExpense() const {
+    const Transaction* highest = nullptr;
+
+    for (const auto& tx : transactions) {
+        if (tx.type == "out" &&
+            (!highest || tx.amount > highest->amount)) {
+            highest = &tx;
+        }
+    }
+
+    std::cout << "\n--- Highest Expense ---\n";
+
+    if (!highest) {
+        std::cout << "No expense transactions found.\n";
+        return;
+    }
+
+    std::cout << "Category: " << highest->category << "\n";
+    std::cout << "Note: " << highest->note << "\n";
+    std::cout << "Amount: Rs. " << std::fixed
+              << std::setprecision(2) << highest->amount << "\n";
+    std::cout << "Date: " << highest->date << "\n";
+}
 void showBudgetRemaining() const {
     std::map<std::string, double> spent;
 
@@ -831,6 +854,7 @@ void showBudgetRemaining() const {
             std::cout << "  12. View Unpaid Bills\n";
             std::cout << "  13. View Goal Progress Report\n";
             std::cout << "  14. View Budget Remaining Report\n";
+            std::cout << "  15. View Highest Expense\n";
             std::cout << "  0. Exit\n";
             std::cout << "Enter choice: ";
 
@@ -938,6 +962,9 @@ else if (choice == 13) {
 }
 else if (choice == 14) {
     showBudgetRemaining();
+}
+else if (choice == 15) {
+    showHighestExpense();
 }
 
 
