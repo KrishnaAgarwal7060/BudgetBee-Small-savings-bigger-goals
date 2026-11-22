@@ -28,6 +28,34 @@
     #define CLOSE_SOCKET close
 #endif
 
+std::string jsonEscape(const std::string& text) {
+        std::string result;
+
+    for (unsigned char ch : text) {
+        switch (ch) {
+            case '"':  result += "\\\""; break;
+            case '\\': result += "\\\\"; break;
+            case '\n': result += "\\n"; break;
+            case '\r': result += "\\r"; break;
+            case '\t': result += "\\t"; break;
+            case '\b': result += "\\b"; break;
+            case '\f': result += "\\f"; break;
+
+            default:
+                if (ch < 32) {
+                    const char hex[] = "0123456789abcdef";
+                    result += "\\u00";
+                    result += hex[ch >> 4];
+                    result += hex[ch & 15];
+                } else {
+                    result += ch;
+                }
+        }
+    }
+
+    return result;
+}
+
 // ============================================================================
 // DATA STRUCTURES & MODELS FOR BUDGETBEE
 // ============================================================================
@@ -826,9 +854,9 @@ void showBudgetRemaining() const {
         ss << "[\n";
         for (size_t i = 0; i < topK.size(); ++i) {
             const auto& tx = topK[i];
-            ss << "  {\"id\": " << tx.id << ", \"amount\": " << tx.amount 
-               << ", \"category\": \"" << tx.category << "\", \"note\": \"" << tx.note 
-               << "\", \"date\": \"" << tx.date << "\"}";
+            ss << ", \"category\": \"" << jsonEscape(tx.category)
+            << "\", \"note\": \"" << jsonEscape(tx.note)
+            << "\", \"date\": \"" << jsonEscape(tx.date) << "\"}";
             if (i + 1 < topK.size()) ss << ",";
             ss << "\n";
         }
@@ -850,7 +878,7 @@ void showBudgetRemaining() const {
             if (i + 1 < settlements.size()) ss << ",";
             ss << "\n";
         }
-        ss << "  ]\n}";
+        
         return ss.str();
     }
 
