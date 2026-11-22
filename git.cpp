@@ -531,12 +531,33 @@ public:
         };
     }
 
-    void addTransaction(const std::string& type, double amount, const std::string& cat, const std::string& note, const std::string& date) {
-        Transaction tx{++nextTxId, type, amount, cat, note, date};
-        transactions.push_back(tx);
-        trie.insert(note, tx.id);
-        trie.insert(cat, tx.id);
+    void addTransaction(const std::string& type, double amount,
+                    const std::string& cat, const std::string& note,
+                    const std::string& date) {
+
+    if (type != "in" && type != "out") {
+        std::cout << "Invalid transaction type!\n";
+        return;
     }
+
+    if (!std::isfinite(amount) || amount <= 0) {
+        std::cout << "Amount must be greater than zero!\n";
+        return;
+    }
+
+    if (cat.empty() || note.empty() || date.empty()) {
+        std::cout << "All fields are required!\n";
+        return;
+    }
+
+    Transaction tx{++nextTxId, type, amount, cat, note, date};
+
+    transactions.push_back(tx);
+    trie.insert(note, tx.id);
+    trie.insert(cat, tx.id);
+
+    std::cout << "Transaction added successfully!\n";
+}
 
     double getTotalIncome() const {
         double inc = 0;
