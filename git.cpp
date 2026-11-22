@@ -467,19 +467,6 @@ private:
     int nextTxId;
     int nextBillId;
     int nextGoalId;
-    std::vector<Transaction> getTransactionsSortedByDate() const {
-    std::vector<Transaction> sorted = transactions;
-
-    std::sort(sorted.begin(), sorted.end(),
-        [](const Transaction& a, const Transaction& b) {
-            if (a.date == b.date) {
-                return a.id > b.id;
-            }
-            return a.date > b.date;
-        });
-
-    return sorted;
-}
 
     void rebuildTrie() {
         trie.clear();
@@ -543,39 +530,13 @@ public:
             {"Kavya", 800, "Desserts", {"Divyanshu", "Aman", "Rhea", "Kavya"}}
         };
     }
-bool addTransaction(
-    const std::string& type,
-    double amount,
-    const std::string& cat,
-    const std::string& note,
-    const std::string& date
-) {
-    // Validate transaction type
-    if (type != "in" && type != "out") {
-        return false;
+
+    void addTransaction(const std::string& type, double amount, const std::string& cat, const std::string& note, const std::string& date) {
+        Transaction tx{++nextTxId, type, amount, cat, note, date};
+        transactions.push_back(tx);
+        trie.insert(note, tx.id);
+        trie.insert(cat, tx.id);
     }
-
-    // Validate amount
-    if (amount <= 0) {
-        return false;
-    }
-
-    // Validate category, note and date
-    if (cat.empty() || note.empty() || date.empty()) {
-        return false;
-    }
-
-    // Create and store transaction
-    Transaction tx{++nextTxId, type, amount, cat, note, date};
-
-    transactions.push_back(tx);
-
-    // Update Trie
-    trie.insert(note, tx.id);
-    trie.insert(cat, tx.id);
-
-    return true;
-}
 
     double getTotalIncome() const {
         double inc = 0;
@@ -588,6 +549,24 @@ bool addTransaction(
         for (const auto& tx : transactions) if (tx.type == "out") exp += tx.amount;
         return exp;
     }
+    void showCategoryWiseExpenses() const {
+    std::map<std::string, double> categoryTotals;
+
+    for (const auto& tx : transactions) {
+        if (tx.type == "out") {
+            categoryTotals[tx.category] += tx.amount;
+        }
+    }
+
+    std::cout << "\n--- Category-wise Expense Summary ---\n";
+
+    for (const auto& item : categoryTotals) {
+        std::cout << item.first
+                  << " : Rs. " << std::fixed
+                  << std::setprecision(2)
+                  << item.second << "\n";
+    }
+}
 
     double getTotalBudget() const {
         double tot = 0;
@@ -749,6 +728,7 @@ bool addTransaction(
             std::cout << "  7. 7-Day Moving Average (Sliding Window)\n";
             std::cout << "  8. Add a New Transaction\n";
             std::cout << "  9. Start Local REST HTTP API Server (Port 8080)\n";
+            std::cout << "  10. Category-wise Expense Summary\n";
             std::cout << "  0. Exit\n";
             std::cout << "Enter choice: ";
 
@@ -837,38 +817,16 @@ bool addTransaction(
                 std::cin.ignore();
                 std::getline(std::cin, note);
                 std::cout << "Date (YYYY-MM-DD): "; std::cin >> date;
-                if (addTransaction(type, amt, cat, note, date)) {
-    std::cout << "Transaction recorded successfully!\n";
-} else {
-    std::cout << "Invalid transaction details! Please try again.\n";
-}
+                addTransaction(type, amt, cat, note, date);
+                std::cout << "✓ Transaction recorded and indexed into Trie!\n";
             } else if (choice == 9) {
                 startHTTPServer(8080);
-            } std::cout << "  10. View Transaction History (Newest First)\n";
-      
-      
+            }
             else if (choice == 10) {
-    auto history = getTransactionsSortedByDate();
-
-    std::cout << "\n--- Transaction History ---\n";
-
-    if (history.empty()) {
-        std::cout << "No transactions found.\n";
-    } else {
-        for (const auto& tx : history) {
-            std::cout << "ID: " << tx.id
-                      << " | Date: " << tx.date
-                      << " | Type: " << tx.type
-                      << " | Amount: Rs. " << tx.amount
-                      << " | Category: " << tx.category
-                      << " | Note: " << tx.note << "\n";
-        }
-    }
+    showCategoryWiseExpenses();
 }
-            
         }
     }
-   
 
     // Built-in Lightweight Zero-Dependency HTTP Server
     void startHTTPServer(int port) {
