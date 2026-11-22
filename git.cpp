@@ -648,6 +648,35 @@ void showGoalProgress() const {
         std::cout << "No savings goals found.\n";
     }
 }
+void showBudgetRemaining() const {
+    std::map<std::string, double> spent;
+
+    for (const auto& tx : transactions) {
+        if (tx.type == "out") {
+            spent[tx.category] += tx.amount;
+        }
+    }
+
+    std::cout << "\n--- Budget Remaining Report ---\n";
+
+    for (const auto& budget : budgets) {
+        double used = spent[budget.first];
+        double remaining = budget.second - used;
+
+        std::cout << "Category: " << budget.first << "\n";
+        std::cout << "Total Budget: Rs. " << budget.second << "\n";
+        std::cout << "Spent: Rs. " << used << "\n";
+        std::cout << "Remaining: Rs. " << remaining << "\n";
+
+        if (remaining < 0) {
+            std::cout << "Status: Budget Exceeded!\n";
+        } else {
+            std::cout << "Status: Within Budget\n";
+        }
+
+        std::cout << "-----------------------------\n";
+    }
+}
 
     double getSafeToSpend() const {
         return getTotalBudget() - getTotalExpense() - getUnpaidBills();
@@ -801,6 +830,7 @@ void showGoalProgress() const {
             std::cout << "  11. Monthly Expense Summary\n";
             std::cout << "  12. View Unpaid Bills\n";
             std::cout << "  13. View Goal Progress Report\n";
+            std::cout << "  14. View Budget Remaining Report\n";
             std::cout << "  0. Exit\n";
             std::cout << "Enter choice: ";
 
@@ -906,6 +936,10 @@ else if (choice == 12) {
 else if (choice == 13) {
     showGoalProgress();
 }
+else if (choice == 14) {
+    showBudgetRemaining();
+}
+
 
         }
     }
