@@ -624,6 +624,30 @@ public:
         std::cout << "No unpaid bills found.\n";
     }
 }
+void showGoalProgress() const {
+    std::cout << "\n--- Savings Goal Progress ---\n";
+
+    for (const auto& goal : goals) {
+        double progress = 0;
+
+        if (goal.target > 0) {
+            progress = (goal.saved / goal.target) * 100;
+        }
+
+        if (progress > 100) progress = 100;
+
+        std::cout << "Goal: " << goal.name << "\n";
+        std::cout << "Saved: Rs. " << goal.saved << "\n";
+        std::cout << "Target: Rs. " << goal.target << "\n";
+        std::cout << "Progress: " << std::fixed
+                  << std::setprecision(2) << progress << "%\n";
+        std::cout << "-----------------------------\n";
+    }
+
+    if (goals.empty()) {
+        std::cout << "No savings goals found.\n";
+    }
+}
 
     double getSafeToSpend() const {
         return getTotalBudget() - getTotalExpense() - getUnpaidBills();
@@ -776,6 +800,7 @@ public:
             std::cout << "  10. Category-wise Expense Summary\n";
             std::cout << "  11. Monthly Expense Summary\n";
             std::cout << "  12. View Unpaid Bills\n";
+            std::cout << "  13. View Goal Progress Report\n";
             std::cout << "  0. Exit\n";
             std::cout << "Enter choice: ";
 
@@ -878,6 +903,10 @@ else if (choice == 11) {
 else if (choice == 12) {
     showUnpaidBills();
 }
+else if (choice == 13) {
+    showGoalProgress();
+}
+
         }
     }
 
