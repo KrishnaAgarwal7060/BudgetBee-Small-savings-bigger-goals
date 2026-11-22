@@ -648,6 +648,24 @@ void showGoalProgress() const {
         std::cout << "No savings goals found.\n";
     }
 }
+void showTransactionCount() const {
+    int incomeCount = 0;
+    int expenseCount = 0;
+
+    for (const auto& tx : transactions) {
+        if (tx.type == "in") {
+            incomeCount++;
+        } else if (tx.type == "out") {
+            expenseCount++;
+        }
+    }
+
+    std::cout << "\n--- Transaction Count Summary ---\n";
+    std::cout << "Income Transactions: " << incomeCount << "\n";
+    std::cout << "Expense Transactions: " << expenseCount << "\n";
+    std::cout << "Total Transactions: "
+              << incomeCount + expenseCount << "\n";
+}
 void showLowestExpense() const {
     const Transaction* lowest = nullptr;
 
@@ -879,6 +897,7 @@ void showBudgetRemaining() const {
             std::cout << "  14. View Budget Remaining Report\n";
             std::cout << "  15. View Highest Expense\n";
             std::cout << "  16. View Lowest Expense\n";
+            std::cout << "  17. View Transaction Count Summary\n";
             std::cout << "  0. Exit\n";
             std::cout << "Enter choice: ";
 
@@ -992,6 +1011,9 @@ else if (choice == 15) {
 }
 else if (choice == 16) {
     showLowestExpense();
+}
+else if (choice == 17) {
+    showTransactionCount();
 }
 
 
