@@ -467,6 +467,19 @@ private:
     int nextTxId;
     int nextBillId;
     int nextGoalId;
+    std::vector<Transaction> getTransactionsSortedByDate() const {
+    std::vector<Transaction> sorted = transactions;
+
+    std::sort(sorted.begin(), sorted.end(),
+        [](const Transaction& a, const Transaction& b) {
+            if (a.date == b.date) {
+                return a.id > b.id;
+            }
+            return a.date > b.date;
+        });
+
+    return sorted;
+}
 
     void rebuildTrie() {
         trie.clear();
@@ -831,9 +844,31 @@ bool addTransaction(
 }
             } else if (choice == 9) {
                 startHTTPServer(8080);
-            }
+            } std::cout << "  10. View Transaction History (Newest First)\n";
+      
+      
+            else if (choice == 10) {
+    auto history = getTransactionsSortedByDate();
+
+    std::cout << "\n--- Transaction History ---\n";
+
+    if (history.empty()) {
+        std::cout << "No transactions found.\n";
+    } else {
+        for (const auto& tx : history) {
+            std::cout << "ID: " << tx.id
+                      << " | Date: " << tx.date
+                      << " | Type: " << tx.type
+                      << " | Amount: Rs. " << tx.amount
+                      << " | Category: " << tx.category
+                      << " | Note: " << tx.note << "\n";
         }
     }
+}
+            
+        }
+    }
+   
 
     // Built-in Lightweight Zero-Dependency HTTP Server
     void startHTTPServer(int port) {
