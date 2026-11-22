@@ -530,13 +530,39 @@ public:
             {"Kavya", 800, "Desserts", {"Divyanshu", "Aman", "Rhea", "Kavya"}}
         };
     }
-
-    void addTransaction(const std::string& type, double amount, const std::string& cat, const std::string& note, const std::string& date) {
-        Transaction tx{++nextTxId, type, amount, cat, note, date};
-        transactions.push_back(tx);
-        trie.insert(note, tx.id);
-        trie.insert(cat, tx.id);
+bool addTransaction(
+    const std::string& type,
+    double amount,
+    const std::string& cat,
+    const std::string& note,
+    const std::string& date
+) {
+    // Validate transaction type
+    if (type != "in" && type != "out") {
+        return false;
     }
+
+    // Validate amount
+    if (amount <= 0) {
+        return false;
+    }
+
+    // Validate category, note and date
+    if (cat.empty() || note.empty() || date.empty()) {
+        return false;
+    }
+
+    // Create and store transaction
+    Transaction tx{++nextTxId, type, amount, cat, note, date};
+
+    transactions.push_back(tx);
+
+    // Update Trie
+    trie.insert(note, tx.id);
+    trie.insert(cat, tx.id);
+
+    return true;
+}
 
     double getTotalIncome() const {
         double inc = 0;
@@ -798,8 +824,11 @@ public:
                 std::cin.ignore();
                 std::getline(std::cin, note);
                 std::cout << "Date (YYYY-MM-DD): "; std::cin >> date;
-                addTransaction(type, amt, cat, note, date);
-                std::cout << "✓ Transaction recorded and indexed into Trie!\n";
+                if (addTransaction(type, amt, cat, note, date)) {
+    std::cout << "Transaction recorded successfully!\n";
+} else {
+    std::cout << "Invalid transaction details! Please try again.\n";
+}
             } else if (choice == 9) {
                 startHTTPServer(8080);
             }
