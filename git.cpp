@@ -549,6 +549,30 @@ public:
         for (const auto& tx : transactions) if (tx.type == "out") exp += tx.amount;
         return exp;
     }
+    void showMonthlyExpenses() const {
+    std::map<std::string, double> monthlyExpenses;
+
+    for (const auto& tx : transactions) {
+        if (tx.type == "out" && tx.date.length() >= 7) {
+            std::string month = tx.date.substr(0, 7);
+            monthlyExpenses[month] += tx.amount;
+        }
+    }
+
+    std::cout << "\n--- Monthly Expense Summary ---\n";
+
+    if (monthlyExpenses.empty()) {
+        std::cout << "No expenses found.\n";
+        return;
+    }
+
+    for (const auto& item : monthlyExpenses) {
+        std::cout << item.first
+                  << " : Rs. " << std::fixed
+                  << std::setprecision(2)
+                  << item.second << "\n";
+    }
+}
     void showCategoryWiseExpenses() const {
     std::map<std::string, double> categoryTotals;
 
@@ -729,6 +753,7 @@ public:
             std::cout << "  8. Add a New Transaction\n";
             std::cout << "  9. Start Local REST HTTP API Server (Port 8080)\n";
             std::cout << "  10. Category-wise Expense Summary\n";
+            std::cout << "  11. Monthly Expense Summary\n";
             std::cout << "  0. Exit\n";
             std::cout << "Enter choice: ";
 
@@ -824,6 +849,9 @@ public:
             }
             else if (choice == 10) {
     showCategoryWiseExpenses();
+}
+else if (choice == 11) {
+    showMonthlyExpenses();
 }
         }
     }
